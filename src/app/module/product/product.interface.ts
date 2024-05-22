@@ -8,9 +8,9 @@ export type Variants = {
     value: string;
 }
 
- export type Inventory = {
+export type Inventory = {
 
-    Quantity: number;
+    quantity: number;
     inStock: boolean;
 }
 
