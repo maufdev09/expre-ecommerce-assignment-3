@@ -8,25 +8,25 @@ import config from "./config";
 
 async function main() {
 
-try {
+  try {
 
 
 
-  await mongoose.connect(config.db_url as string);
-  const port = config.port 
-  
+    await mongoose.connect(config.db_url as string);
+    const port = config.port
 
 
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`)
+    }
+    )
+
+
+  } catch (error) {
+    console.log(error);
+
   }
-  )
-
-  
-} catch (error) {
-  console.log(error);
-  
-}
 
 
 
