@@ -24,23 +24,15 @@ const createProduct = async (req: Request, res: Response) => {
     }
 }
 
-const getAllProducts = async (req: Request, res: Response) => {
-    try {
-        const result = await ProductServices.geAllProductFromDB()
-        res.status(200).json(
-            {
-                success: true,
-                message: "Products fetched successfully!",
-                data: result,
+// const getAllProducts = async (req: Request, res: Response) => {
+//     try {
+    
 
-            }
-        )
+//     } catch (error) {
+//         console.log(error);
 
-    } catch (error) {
-        console.log(error);
-
-    }
-}
+//     }
+// }
 const getSingleProduct = async (req: Request, res: Response) => {
     try {
         const productId = req.params.productId
@@ -101,19 +93,35 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
 
     }
 }
-const searchProduct= async (req: Request, res: Response) => {
+const searchAndGetAllProduct= async (req: Request, res: Response) => {
     try {
         const searchItem = req.query.searchTerm as string;
 
-        const result = await ProductServices.searchProductByIdFromDB(searchItem)
-        res.status(200).json(
-            {
-                success: true,
-                message: "Products  matching this`${searchItem}` fetched successfully!",
-                data: result,
+        if (searchItem) {
+            const result = await ProductServices.searchProductByIdFromDB(searchItem)
+            res.status(200).json(
+                {
+                    success: true,
+                    message: `Products  matching this ${searchItem} fetched successfully! `,
+                    data: result,
+    
+                }
+            )
+            
+        }else{
+            const result = await ProductServices.geAllProductFromDB()
+            res.status(200).json(
+                {
+                    success: true,
+                    message: "Products fetched successfully!",
+                    data: result,
+    
+                }
+            )
 
-            }
-        )
+        }
+
+      
 
     } catch (error) {
         console.log(error);
@@ -125,9 +133,9 @@ const searchProduct= async (req: Request, res: Response) => {
 
 export const ProductController = {
     createProduct,
-    getAllProducts,
+    
     getSingleProduct,
     deleteSingleProduct,
     updateSingleProduct,
-    searchProduct
+    searchAndGetAllProduct
 }
