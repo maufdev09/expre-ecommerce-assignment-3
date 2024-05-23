@@ -82,7 +82,7 @@ const searchAndGetAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, f
             const result = yield product_service_1.ProductServices.searchProductByIdFromDB(searchItem);
             res.status(200).json({
                 success: true,
-                message: `Products  matching this ${searchItem} fetched successfully! `,
+                message: `Products  matching search term ${searchItem} fetched successfully! `,
                 data: result,
             });
         }

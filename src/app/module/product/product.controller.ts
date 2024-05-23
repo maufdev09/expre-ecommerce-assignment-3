@@ -102,7 +102,7 @@ const searchAndGetAllProduct= async (req: Request, res: Response) => {
             res.status(200).json(
                 {
                     success: true,
-                    message: `Products  matching this ${searchItem} fetched successfully! `,
+                    message: `Products  matching search term ${searchItem} fetched successfully! `,
                     data: result,
     
                 }
