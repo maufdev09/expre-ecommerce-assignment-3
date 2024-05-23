@@ -1,5 +1,5 @@
-import { Schema, model, connect } from "mongoose";
-import { Inventory, Product, Product, Variants } from "./product.interface";
+import { Schema, model, } from "mongoose";
+import { Inventory, Product,  Variants } from "./product.interface";
 
 
 

@@ -19,7 +19,7 @@ const deleteProductByIdFromDB=async(Id:string)=>{
     const result = await ProductModel.deleteOne({_id:Id})
     return result
 }
-const updateProductByIdFromDB=async(productId:string, updatedProductData:any)=>{
+const updateProductByIdFromDB=async(productId:string, updatedProductData:Product)=>{
     const result = await ProductModel.findByIdAndUpdate(productId, updatedProductData,{new:true})
     return result
 }
