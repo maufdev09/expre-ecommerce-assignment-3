@@ -19,6 +19,24 @@ const deleteProductByIdFromDB=async(Id:string)=>{
     const result = await ProductModel.deleteOne({_id:Id})
     return result
 }
+const updateProductByIdFromDB=async(productId:string, updatedProductData:any)=>{
+    const result = await ProductModel.findByIdAndUpdate(productId, updatedProductData,{new:true})
+    return result
+}
+
+const searchProductByIdFromDB=async(searchTerm:string)=>{
+
+    const  regex = new RegExp(searchTerm, "i");
+    const result = await ProductModel.find({
+
+        $or:[
+            {name: {$regex: regex}},
+            {tags: {$regex: regex}},
+        ]
+    })
+    return result
+}
+
 
 
 
@@ -26,5 +44,7 @@ export const ProductServices= {
     createProductIntoDB,
     geAllProductFromDB,
     getProductByIdFromDB,
-    deleteProductByIdFromDB
+    deleteProductByIdFromDB,
+    updateProductByIdFromDB,
+    searchProductByIdFromDB,
 }

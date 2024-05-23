@@ -3,7 +3,7 @@ import { ProductServices } from "./product.service";
 
 const createProduct = async (req: Request, res: Response) => {
     try {
-        const { product: productData } = req.body
+        const  productData  = req.body
 
         const result = await ProductServices.createProductIntoDB(productData)
         console.log(productData);
@@ -60,6 +60,28 @@ const getSingleProduct = async (req: Request, res: Response) => {
 
     }
 }
+const updateSingleProduct = async (req: Request, res: Response) => {
+    try {
+        const productId = req.params.productId
+        const  updatedProductData  = req.body
+
+
+        const result = await ProductServices.updateProductByIdFromDB(productId,updatedProductData)
+        res.status(200).json(
+            {
+                success: true,
+                message: "Products updated successfully!",
+                data: result,
+
+            }
+        )
+
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
 const deleteSingleProduct = async (req: Request, res: Response) => {
     try {
         const productId = req.params.productId
@@ -79,6 +101,25 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
 
     }
 }
+const searchProduct= async (req: Request, res: Response) => {
+    try {
+        const searchItem = req.query.searchTerm as string;
+
+        const result = await ProductServices.searchProductByIdFromDB(searchItem)
+        res.status(200).json(
+            {
+                success: true,
+                message: "Products  matching this`${searchItem}` fetched successfully!",
+                data: result,
+
+            }
+        )
+
+    } catch (error) {
+        console.log(error);
+
+    }
+}
 
 
 
@@ -87,4 +128,6 @@ export const ProductController = {
     getAllProducts,
     getSingleProduct,
     deleteSingleProduct,
+    updateSingleProduct,
+    searchProduct
 }
