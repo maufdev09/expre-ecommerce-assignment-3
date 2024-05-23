@@ -15,11 +15,16 @@ const getProductByIdFromDB=async(Id:string)=>{
     const result = await ProductModel.findOne({_id:Id})
     return result
 }
+const deleteProductByIdFromDB=async(Id:string)=>{
+    const result = await ProductModel.deleteOne({_id:Id})
+    return result
+}
 
 
 
 export const ProductServices= {
     createProductIntoDB,
     geAllProductFromDB,
-    getProductByIdFromDB
+    getProductByIdFromDB,
+    deleteProductByIdFromDB
 }

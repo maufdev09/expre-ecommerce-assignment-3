@@ -8,6 +8,7 @@ const router=express.Router();
 
 router.post("/products", ProductController.createProduct)
 router.get("/products", ProductController.getAllProducts)
-router.get("/:id", ProductController.getSingleProduct)
+router.get("/products/:productId", ProductController.getSingleProduct)
+router.delete("/products/:productId", ProductController.deleteSingleProduct)
 
 export const ProductRoutes =router
